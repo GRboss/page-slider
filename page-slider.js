@@ -25,7 +25,8 @@
 			
 			var page = createPage({
 				content: div.html(),
-				visibility: visibility
+				visibility: visibility,
+				backgroundColor: getRandomColor()
 			});
 			page.appendTo(body);
 			pageCounter++;
@@ -36,10 +37,21 @@
 		var div = $('<div />',{
 			html: obj.content,
 			class: 'pageSlider_page '+obj.visibility
+		}).css({
+			'background-color': obj.backgroundColor
 		});
 		
 		return div;
 	};
+	
+	var getRandomColor = function() {
+		var letters = '0123456789ABCDEF'.split('');
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
 	
 	/** Default settings **/
 	$.fn.pageSlider.defaults = {
