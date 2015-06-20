@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- Based on HTML5 Bones | http://html5bones.com -->
- 
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -8,12 +6,19 @@
 	<title>Page Slider</title>
 	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="page-slider.js"></script>
+	<link rel="stylesheet" type="text/css" href="page-slider.css" />
 </head>
 <body>
 	<div id="pageSliderContainer">
-		<div>Born to Run</div>
-		<div>Darkness on the Edge of Town</div>
-		<div>The River</div>
+		<div class="page">Born to Run</div>
+		<div class="page">Darkness on the Edge of Town</div>
+		<div class="page">The River</div>
 	</div>
+	
+	<script>
+		$('#pageSliderContainer').pageSlider({
+			pageClass: 'page'
+		});
+	</script>
 </body>
 </html>
