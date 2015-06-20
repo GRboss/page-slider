@@ -5,3 +5,11 @@
 	right: 0px;
 	bottom: 0px;
 }
+
+.pageSlider_visible {
+	display: block;
+}
+
+.pageSlider_hidden {
+	display: none;
+}
