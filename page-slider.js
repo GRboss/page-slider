@@ -31,6 +31,8 @@
 			page.appendTo(body);
 			pageCounter++;
 		});
+		
+		events(opts);
 	};
 	
 	var createPage = function(obj) {
@@ -51,14 +53,23 @@
 			color += letters[Math.floor(Math.random() * 16)];
 		}
 		return color;
-	}
+	};
+	
+	var events = function(opts) {
+		$( window ).resize(function() {
+			opts.windowWidth = window.innerWidth;
+			opts.windowHeight = window.innerHeight;
+		});
+	};
 	
 	/** Default settings **/
 	$.fn.pageSlider.defaults = {
 		/** The default class name of each page **/
 		pageClass: 'pageSliderPage',
 		pageVisibleClass: 'pageSlider_visible',
-		pageHiddenClass: 'pageSlider_hidden'
+		pageHiddenClass: 'pageSlider_hidden',
+		windowWidth: window.innerWidth,
+		windowHeight: window.innerHeight
 	};
  
 }( jQuery ));
