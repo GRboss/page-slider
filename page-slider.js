@@ -41,20 +41,38 @@
 			pageCounter++;
 		});
 		
-		events(opts);
+		events();
 	};
 	
 	var createPage = function(obj) {
 		var div = $('<div />',{
-			html: obj.content,
 			class: 'pageSlider_page '+obj.visibility
 		}).css({
 			'background-color': obj.backgroundColor,
 			'width': obj.width,
 			'height': obj.height
-		});
+		}).append(createInnerDiv({
+			content: obj.content
+		}));
 		
 		return div;
+	};
+	
+	var createInnerDiv = function(obj) {
+		var html = $('<div/>',{
+			class: 'pageSlider_page_inner'
+		});
+		
+		var innerContainerTable = $('<div/>',{
+			class: 'pageSlider_page_inner_containerTable'
+		}).appendTo(html);
+		
+		var innerContainerTableCell = $('<div/>',{
+			class: 'pageSlider_page_inner_containerTableCell',
+			html: obj.content
+		}).appendTo(innerContainerTable);
+		
+		return html;
 	};
 	
 	var getRandomColor = function() {
@@ -98,13 +116,15 @@
 		me.show();
 	};
 	
-	var events = function(opts) {
-		$( window ).resize(function() {
-			opts.windowWidth = window.innerWidth;
-			opts.windowHeight = window.innerHeight;
-		});
+	var events = function() {
+		$(window).resize(onWindowResize);
 		
 		$(window).click(showNextPage);
+	};
+	
+	var onWindowResize = function() {
+		opts.windowWidth = window.innerWidth;
+		opts.windowHeight = window.innerHeight;
 	};
 	
 	/** Default settings **/
